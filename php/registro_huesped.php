@@ -12,13 +12,14 @@ include('conexion_bd.php');
     $municipio = $_POST['municipio']; 
     $email = $_POST['email'];
     $contrasena = generarContrasena();
-    $fecha = $_POST['fechaR'];
-    $habitacion = $_POST['habitacion'];
+    $fechaInicial = $_POST['fecha_inicial'];
+    $fechaFinal = $_POST['fecha_final'];
+    $nHabitacion = $_POST['habitacion'];
     
-    $query_insert="INSERT INTO clientes VALUES ('$cedula','$nombre','$apellido','$telefono','$direccion','$pais','$departamento','$municipio','$email','$contrasena','$habitacion')";
+    $query_insert="INSERT INTO clientes VALUES ('$cedula','$nombre','$apellido','$telefono','$direccion','$pais','$departamento','$municipio','$email','$contrasena')";
     $query_verificacion = mysqli_query($con,"SELECT * FROM clientes WHERE cedula_cliente = $cedula");
-    $query_update = "UPDATE habitaciones SET estado = 'ocupado' WHERE numero_habitacion = $habitacion";
-    $query_reserva = "INSERT INTO reserva (fecha_reserva,cedula_cliente,habitacion) VALUES ('$fecha','$cedula','$habitacion')";
+    //$query_update = "UPDATE habitaciones SET estado = 'ocupado' WHERE numero_habitacion = $habitacion";
+    $query_reserva = "INSERT INTO reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) VALUES ('$fechaInicial','$fechaFinal','$cedula','$nHabitacion')";
     
     if(mysqli_num_rows($query_verificacion)>0){
         echo 
@@ -29,9 +30,9 @@ include('conexion_bd.php');
         exit();
     }else{
         $ejecutar = mysqli_query($con,$query_insert);
-        $ejecutar_update = mysqli_query($con,$query_update);
+        //$ejecutar_update = mysqli_query($con,$query_update);
         $ejecutar_reserva = mysqli_query($con,$query_reserva);
-        if($ejecutar && $ejecutar_update && $ejecutar_reserva){
+        if($ejecutar && $ejecutar_reserva){
             echo 
             "<script>
                 alert('Usuario almacenado correctamente.')

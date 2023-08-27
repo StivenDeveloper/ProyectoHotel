@@ -35,12 +35,6 @@
                OR (r.fecha_inicio >= '$fechaInicio' AND r.fecha_inicio < '$fechaFin')
         );");
         $validarFecha = mysqli_query($con,$query);
-
-        if (mysqli_num_rows($validarFecha) > 0) {
-            while ($row = $validarFecha->fetch_assoc()) {
-                echo $row['numero_habitacion'] . "<br>";
-            }
-        }
     }
 ?>
 
@@ -68,31 +62,23 @@
                 <label for="date_fin">Fecha final</label>
                 <input type="date" name="date_fin" class="campo"><br>
 
-                <label for="habitacion">Ingrese habitacion:</label>
-                <!--<select name="habitacion">
-                    <?php
-                    // Consulta SQL para obtener los datos
-                    //include('php/conexion_bd.php');
-                    //$con = conexion();
-
-                    //$result = mysqli_query($con, "SELECT numero_habitacion FROM habitaciones WHERE estado = 'desocupado'");
-
-                    //if (mysqli_num_rows($result) > 0) {
-                      //  while ($row = $result->fetch_assoc()) {
-                        //    echo '<option value="' . $row["numero_habitacion"] . '">' . $row["numero_habitacion"] . '</option>';
-                        //}
-                    //}
-
-                   // $con->close();
-                    ?>
-                </select>-->
-    
                     <input type="submit" name="enviar" value="Validar Habitación" class="btn-enviar">
                     <input type="reset" value="Borrar datos" class="btn-enviar">
             </div>
             
             <a href="index.php">Volver</button></a>
         </form>
+
+        <?php
+            if(isset($_POST['date_inicio']) && isset($_POST['date_fin'])){
+                if (mysqli_num_rows($validarFecha) > 0) {
+                    while ($row = $validarFecha->fetch_assoc()) {
+                        $link = "reserva.php?dato1=" . urlencode($fechaInicio) . "&dato2=" . urlencode($fechaFin) . "&dato3=" . $row['numero_habitacion'];
+                        echo "<a href='$link'>" . $row['numero_habitacion'] . "</a>" . $row['descripcion'] . "<br>";
+                    }
+                }
+            }
+        ?>
     </div>
 </body>
 </html>

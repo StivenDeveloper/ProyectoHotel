@@ -21,9 +21,7 @@ CREATE TABLE clientes(
     nombre_municipio varchar(45),
     correo varchar(45),
     contrasena varchar(45),
-    numero_habitacion int,
-    primary key(cedula_cliente),
-    foreign key(numero_habitacion) references habitaciones(numero_habitacion)
+    primary key(cedula_cliente)
 );
 
 DROP TABLE IF EXISTS validacion_clientes;
@@ -112,8 +110,13 @@ CREATE TABLE municipios(
 
 
 -- datos cliente
-insert into clientes values ('98765','dirleny','ortiz','12345','agsdfg','fggsfgds','sdfgf','sfgsf','dir@dir','98765','101');
+insert into clientes values ('98765','dirleny','ortiz','12345','agsdfg','fggsfgds','sdfgf','sfgsf','dir@dir','98765');
 
+insert into habitaciones values
+('101','Acogedora habitación individual con vista al jardín.'),
+('102','Espaciosa habitación doble con balcón privado.'),
+('201','Suite junior elegante con sala de estar.'),
+('202','Habitación familiar con dos camas dobles.');
 -- datos login
 insert into login_registre values ('12345', 'weimar','wei@wei','12345');
 
@@ -122,11 +125,7 @@ insert into login_registre values ('12345', 'weimar','wei@wei','12345');
 insert into reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) values('2023-08-24','2023-08-25','98765','101');
 insert into reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) values('2023-08-27','2023-08-30','98765','101');
 insert into reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) values('2023-08-30','2023-09-02','98765','102');
-insert into habitaciones values
-('101','Acogedora habitación individual con vista al jardín.'),
-('102','Espaciosa habitación doble con balcón privado.'),
-('201','Suite junior elegante con sala de estar.'),
-('202','Habitación familiar con dos camas dobles.');
+
 
 -- Consulta mágica no perder de vista
 SELECT h.numero_habitacion, h.descripcion
