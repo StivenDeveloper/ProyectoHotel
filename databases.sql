@@ -112,7 +112,7 @@ CREATE TABLE municipios(
 
 
 -- datos cliente
-insert into clientes values ('98765','dirleny','ortiz','12345','agsdfg','fggsfgds','sdfgf','sfgsf','dir@dir','98765');
+insert into clientes values ('98765','dirleny','ortiz','12345','agsdfg','fggsfgds','sdfgf','sfgsf','dir@dir','98765','101');
 
 -- datos login
 insert into login_registre values ('12345', 'weimar','wei@wei','12345');
@@ -134,7 +134,7 @@ SELECT h.numero_habitacion, h.descripcion
         WHERE h.numero_habitacion NOT IN (
             SELECT r.numero_habitacion
             FROM reserva r
-            WHERE (r.fecha_inicio < '$fechaFin' AND r.fecha_final > '$fechaInicio') -- Rango de fechas deseado
-               OR (r.fecha_inicio <= '$fechaInicio' AND r.fecha_final > '$fechaInicio')
-               OR (r.fecha_inicio >= '$fechaInicio' AND r.fecha_inicio < '$fechaFin')
+            WHERE (r.fecha_inicio < '2023-08-30' AND r.fecha_final > '2023-08-27') -- Rango de fechas deseado
+               OR (r.fecha_inicio <= '2023-08-27' AND r.fecha_final > '2023-08-27')
+               OR (r.fecha_inicio >= '2023-08-27' AND r.fecha_inicio < '2023-09-04')
 );

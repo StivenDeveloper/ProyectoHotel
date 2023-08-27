@@ -17,7 +17,7 @@
         $fActual = new DateTime($fechaActual);
 
         //Para cambiar fechas trocadas
-        if(($fInicio > $fFin) || ($fInicio < $fActual)){
+        if(($fInicio > $fFin) || ($fInicio < $fActual) || empty($fechaInicio) || empty($fechaFin)){
             echo "<script>
             alert ('Ingrese las fechas correctamente')
             window.location='reserva_fecha.php';
