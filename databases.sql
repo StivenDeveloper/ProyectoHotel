@@ -120,9 +120,21 @@ insert into login_registre values ('12345', 'weimar','wei@wei','12345');
 -- datos reserva
 
 insert into reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) values('2023-08-24','2023-08-25','98765','101');
-
+insert into reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) values('2023-08-27','2023-08-30','98765','101');
+insert into reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) values('2023-08-30','2023-09-02','98765','102');
 insert into habitaciones values
 ('101','Acogedora habitación individual con vista al jardín.'),
 ('102','Espaciosa habitación doble con balcón privado.'),
 ('201','Suite junior elegante con sala de estar.'),
 ('202','Habitación familiar con dos camas dobles.');
+
+-- Consulta mágica no perder de vista
+SELECT h.numero_habitacion, h.descripcion
+        FROM habitaciones h
+        WHERE h.numero_habitacion NOT IN (
+            SELECT r.numero_habitacion
+            FROM reserva r
+            WHERE (r.fecha_inicio < '$fechaFin' AND r.fecha_final > '$fechaInicio') -- Rango de fechas deseado
+               OR (r.fecha_inicio <= '$fechaInicio' AND r.fecha_final > '$fechaInicio')
+               OR (r.fecha_inicio >= '$fechaInicio' AND r.fecha_inicio < '$fechaFin')
+);

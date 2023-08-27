@@ -1,4 +1,6 @@
 <?php
+    //Fecha actual en horario de colombia
+    date_default_timezone_set('America/Bogota');
     session_start();
     include('php/conexion_bd.php');
     $con = conexion();
@@ -11,35 +13,32 @@
         $fInicio = new DateTime($fechaInicio);
         $fFin = new DateTime($fechaFin);
         //$fFin->modify('-1 day');
-        
+        $fechaActual = date('Y-m-d');
+        $fActual = new DateTime($fechaActual);
 
         //Para cambiar fechas trocadas
-        if($fInicio > $fFin){
+        if(($fInicio > $fFin) || ($fInicio < $fActual)){
             echo "<script>
             alert ('Ingrese las fechas correctamente')
             window.location='reserva_fecha.php';
             </script>";
             exit();
         }
-        echo $fechaFin;
+        //$fechaFin = $fFin->format('y-m-d');
         $query = ("SELECT h.numero_habitacion, h.descripcion
         FROM habitaciones h
-        WHERE NOT EXISTS (
-            SELECT 1
+        WHERE h.numero_habitacion NOT IN (
+            SELECT r.numero_habitacion
             FROM reserva r
-            WHERE r.numero_habitacion = h.numero_habitacion
-            AND (
-                (r.fecha_inicio BETWEEN '$fechaInicio' AND '$fechaFin') OR
-                (r.fecha_final BETWEEN '$fechaInicio' AND '$fechaFin') OR
-                ('$fechaInicio' BETWEEN r.fecha_inicio AND r.fecha_final) OR
-                ('$fechaFin' BETWEEN r.fecha_inicio AND r.fecha_final)
-            )
+            WHERE (r.fecha_inicio < '$fechaFin' AND r.fecha_final > '$fechaInicio') -- Rango de fechas deseado
+               OR (r.fecha_inicio <= '$fechaInicio' AND r.fecha_final > '$fechaInicio')
+               OR (r.fecha_inicio >= '$fechaInicio' AND r.fecha_inicio < '$fechaFin')
         );");
         $validarFecha = mysqli_query($con,$query);
 
         if (mysqli_num_rows($validarFecha) > 0) {
             while ($row = $validarFecha->fetch_assoc()) {
-                echo $row['numero_habitacion'];
+                echo $row['numero_habitacion'] . "<br>";
             }
         }
     }
