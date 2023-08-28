@@ -14,17 +14,15 @@
         $query_nombre = mysqli_query($con, "SELECT nombre, apellido FROM clientes WHERE cedula_cliente = '$cedula'");
         $nombre = mysqli_fetch_assoc($query_nombre);
         
-        if(isset($_POST['cedula'])){
-            if(mysqli_num_rows($query_validar)>0){
-                $valorInput = $cedula;
-            }else{
-                echo "
-                <script>
-                    alert('Usuario no existe, por favor verifique los datos ingresados.')            
-                    window.location='reserva_cancelar.php';
-                </script>
-                ";
-            }
+        if(mysqli_num_rows($query_validar)>0){
+            $valorInput = $cedula;
+        }else{
+            echo "
+            <script>
+                alert('Usuario no existe o NO tiene reservas, por favor verifique los datos ingresados.')            
+                window.location='reserva_cancelar.php';
+            </script>
+            ";
         }
     }
 ?>  
@@ -40,8 +38,8 @@
     <h1 class="titulo">EMPRESA HOTELERA EJE CAFETERO</h1>
     <div class="container-form">
         <div class="info-form">
-            <h2>RESERVA DE HABITACIONES</h2>
-            <p>Formulario para registro de los huespedes</p>
+            <h2>CANCELACIÓN DE UNA RESERVA</h2>
+            <p>Aquí puedes cancelar una reserva</p>
         </div>
         <form action="reserva_cancelar.php" autocomplete="off" method="post">
             <input type="number" name="cedula" placeholder="Cédula" value="<?php echo $valorInput; ?>" class="campo" required>
@@ -53,27 +51,31 @@
 
             <a href="menuPrincipal.php">Volver</button></a>
         </form>
-        <?php if(isset($_POST['cedula'])){ ?>
-        <table>
-            <tr>
-                <td>
-                    Habitación
-                </td>
-                <td>
-                    Fecha de la reservación
-                </td>
-                <td>
-                    Acción
-                </td>
-            </tr>
-            <tr>
+    </div>
+
+    <div class="tablas">
+    <?php if(isset($_POST['cedula'])){ ?>
+        <table class="tabla-intercalada">
+            <thead>
+                <tr>
+                    <td>
+                        Habitación
+                    </td>
+                    <td>
+                        Fecha de la reservación
+                    </td>
+                    <td>
+                        Acción
+                    </td>
+                </tr>
+            </thead>
+            <?php while ($row = mysqli_fetch_assoc($query_validar)) { ?>
             <tbody>
-                <?php while ($row = mysqli_fetch_assoc($query_validar)) { ?>
                 <tr>
                     <td><?php echo $row['numero_habitacion']; ?></td>
                     <td><?php echo $row['fecha_inicio']; ?></td>
                     <?php $link = "php/cancelar_reserva.php?habitacion=" . urlencode($row['numero_habitacion']). "&fecha=" . urlencode($row['fecha_inicio']) ?>
-                    <td><a href="<?php echo $link; ?>" onclick="return confirm('¿Estás seguro de que deseas cancelar la reserva?')">CANCELAR RESERVA</a></td> 
+                    <td><a href="<?php echo $link; ?>" class="aEliminar" onclick="return confirm('¿Estás seguro de que deseas cancelar la reserva?')">CANCELAR RESERVA</a></td> 
                 </tr>
                 <?php } ?>
             </tbody>

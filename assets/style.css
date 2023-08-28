@@ -4,6 +4,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+    color: inherit; /* Mantener el color por defecto del texto */
 }
 .container-form{
     width: 100%;
@@ -78,4 +80,48 @@
     border-radius: 20px;
     padding: 10px;
 }
+
+.tablas{
+    justify-content: center;
+    display: flex;
+}
+
+.tabla-intercalada{
+    width: 90%;
+    border-collapse: separate;
+    border-spacing: 1px 5px;
+}
+.tabla-intercalada td, th{
+    padding: 10px; /* Espaciado dentro de las celdas */
+}
+
+.tabla-intercalada thead {
+    background-color: #fa7676; /* Color de fondo para el encabezado */
+    font-weight: bold;
+}
+
+.tabla-intercalada tbody tr:nth-child(odd) {
+    background-color: #8eb396; /* Color de fondo para filas impares */
+}
+
+.tabla-intercalada tbody tr:nth-child(even) {
+    background-color: #d2f0c5; /* Color de fondo para filas pares */
+}
+
+.aReserva{
+    color: #0051ff;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+.aModificar{
+    color: #fa7900;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+.aEliminar{
+    color: #fd0505;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+
     

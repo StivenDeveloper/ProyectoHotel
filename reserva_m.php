@@ -63,13 +63,13 @@
             <p>Formulario para registro de los huespedes</p>
         </div>
         <div>
-            <?php $link = "reserva.php?dato1=" . urlencode($fechaInicial) . "&dato2=" . urlencode($fechaFinal) . "&dato3=" . urlencode($Nhabitacion); ?>
+            <?php $link = "reserva_m.php?dato1=" . urlencode($fechaInicial) . "&dato2=" . urlencode($fechaFinal) . "&dato3=" . urlencode($Nhabitacion); ?>
             <form action="<?php echo $link ?>" method="post">
                 <label for="cedula_validacion">Ingrese la cedula para validar si existe en el sistema</label>
                 <input type="number" name="cedula_validacion" placeholder="Cédula" class="campo" value="<?php echo $cedulaF ?>" required>
                 <input type="submit" value="Verficar Cédula" class="btn-enviar">
             </form><br><br>
-            <form action="php/registro_huesped.php" autocomplete="off" method="post">
+            <form action="php/registro_huesped_m.php" autocomplete="off" method="post">
                 <input type="hidden" name="cedula" placeholder="Cédula" class="campo" value="<?php echo $cedulaF ?>" readonly required>
                 <input type="text" name="nombre" placeholder="Nombre" class="campo" value="<?php echo $nombreF ?>" readonly required>
                 <input type="text" name="apellido" placeholder="Apellido" class="campo" value="<?php echo $apellidoF ?>" readonly required>
@@ -86,7 +86,7 @@
                 <input type="submit" name="enviar" value="Reservar" class="btn-enviar">
                 <input type="reset" value="Borrar datos" class="btn-enviar">
 
-                <a href="reserva_fecha.php">Volver</button></a>
+                <a href="reserva_fecha_m.php">Volver</button></a>
             </form>
         </div>
     </div>

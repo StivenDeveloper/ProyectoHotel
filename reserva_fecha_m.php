@@ -22,7 +22,7 @@
         if(($fInicio > $fFin) || ($fInicio < $fActual) || empty($fechaInicio) || empty($fechaFin)){
             echo "<script>
             alert ('Ingrese las fechas correctamente')
-            window.location='reserva_fecha.php';
+            window.location='reserva_fecha_m.php';
             </script>";
             exit();
         }
@@ -55,7 +55,7 @@
             <h2>VALIDAR LA DISPONIBILIDAD</h2>
             <p>Validar la disponibilidad de las habitaciones segun la fecha que ingresa el huesped</p>
         </div>
-        <form action="reserva_fecha.php" autocomplete="off" method="post">
+        <form action="reserva_fecha_m.php" autocomplete="off" method="post">
 
             <h3>Ingrese fecha de reservación:<br></h3>
             <div class="checkin">
@@ -68,7 +68,7 @@
                     <input type="reset" value="Borrar datos" class="btn-enviar">
             </div>
             
-            <a href="index.php">Volver</button></a>
+            <a href="menuPrincipal.php">Volver</button></a>
         </form>
     </div>
 
@@ -87,7 +87,7 @@
             </thead>
             <?php if (mysqli_num_rows($validarFecha) > 0) { 
                 while ($row = $validarFecha->fetch_assoc()) { 
-                $link = "reserva.php?dato1=" . urlencode($fechaInicio) . "&dato2=" . urlencode($fechaFin) . "&dato3=" . $row['numero_habitacion']; ?>
+                $link = "reserva_m.php?dato1=" . urlencode($fechaInicio) . "&dato2=" . urlencode($fechaFin) . "&dato3=" . $row['numero_habitacion']; ?>
                 <tbody>
                     <tr>
                         <td>

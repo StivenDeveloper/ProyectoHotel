@@ -13,9 +13,10 @@
             <p>Menú principal para dirigirse a los siguientes submenus</p>
         </div>
             <div class="">
-                <a href="reserva_fecha.php"><button class="btn-enviar">Reserva Huesped</button></a>
+                <a href="reserva_fecha_m.php"><button class="btn-enviar">Reserva Huesped</button></a>
                 <a href="facturacion.php"><button class="btn-enviar">Facturación</button></a>
                 <a href="pedidos.php"><button class="btn-enviar">Pedidos</button></a>
+                <a href="gestion_huespedes.php"><button class="btn-enviar">Gestionar Huespedes</button></a>
                 <a href="index.php">Cerrar Sesion</a>
             </div>
     </div>

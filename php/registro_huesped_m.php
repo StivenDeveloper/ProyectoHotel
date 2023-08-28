@@ -26,13 +26,13 @@ include('conexion_bd.php');
             echo 
             "<script>
                 alert('Usuario y Reserva almacenados correctamente.')
-                window.location = '../index.php'
+                window.location = '../menuPrincipal.php'
             </script>";
         }else{
             echo 
             "<script>
                 alert('Usuarios y Reservas NO almacenados correctamente.')
-                window.location = '../index.php'
+                window.location = '../menuPrincipal.php'
             </script>";
         }
     }else{
@@ -42,13 +42,13 @@ include('conexion_bd.php');
             echo 
             "<script>
                 alert('Reserva almacenado correctamente.')
-                window.location = '../index.php'
+                window.location = '../menuPrincipal.php'
             </script>";
         }else{
             echo 
             "<script>
                 alert('Reserva no almacenados correctamente.')
-                window.location = '../index.php'
+                window.location = '../menuPrincipal.php'
             </script>";
         }
     }
