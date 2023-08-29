@@ -14,8 +14,147 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
+
+/* INICIO DE SESION */
+#body-login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(img/img1.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+
+.container-form {
+  width: 90%;
+  height: 96vh;
+  display: flex;
+  justify-content: space-around;
+  transition:  all .5s ease-out;
+}
+
+.welcome-back {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.message {
+  padding: 1rem;
+}
+
+.message h2 {
+  font-size: 1.7rem;
+  padding: 1rem 0;
+}
+
+.message button {
+  padding: 1rem;
+  font-weight: 400;
+  background-color: #4a4aee;
+  border-radius: 2rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: .9rem;
+  margin-top: 2rem;
+  transition: all .3s ease-in;
+  color: #fff;
+}
+
+
+.formulario {
+  width: 400px;
+  height: 510px;
+  padding: 1rem;
+  margin: 2rem;
+  background-color: rgb(51, 51, 51, 0.8);
+  text-align: center;
+}
+
+.create-account {
+  padding: 2.7rem 0;
+  font-size: 1.7rem;
+}
+
+.iconos {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.border-icon {
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border: solid thin white;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  transition: all .3s ease-in;
+}
+
+.border-icon:hover {
+  background-color: #4a4aee;
+  cursor: pointer;
+}
+
+
+.formulario input {
+  width: 70%;
+  display: block;
+  margin: auto;
+  margin-bottom: 2rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: white thin solid;
+  text-align: center;
+  outline: none;
+  padding: .2rem 0;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.formulario input::placeholder{
+  color: #fff;
+}
+
+.formulario input[type="submit"] {
+  width: 60%;
+  margin: auto;
+  border: solid thin white;
+  padding: .7rem;
+  border-radius: 2rem;
+  background-color: white;
+  font-weight: 600;
+  margin-top: 3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #222;
+}
+
+.index-volver{
+  margin-top: 20px;
+}
+.index-volver a{
+
+  text-decoration: none; /* Elimina el subrayado */
+  color: white; /* Hereda el color del texto del elemento padre */
+  border: none; /* Elimina cualquier borde alrededor del enlace */
+}
+
+
+/* ESTILOS INDEX.PHP */
 .section__container {
   max-width: var(--max-width);
   margin: auto;
@@ -136,18 +275,6 @@ nav {
   position: relative;
 }
 
-/* .booking__container label {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--text-dark);
-  pointer-events: none;
-  transition: 0.3s;
-} */
-
 .booking__container input {
   width: 100%;
   padding: 10px 0;
@@ -160,30 +287,8 @@ nav {
 }
 
 .booking__container input:focus ~ label {
-  font-size: 0.8rem;
+  font-size: 1rem;
   top: 0;
-}
-
-.booking__container .form__group p {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--text-light);
-}
-
-.booking__container .btn {
-  padding: 1rem;
-  outline: none;
-  border: none;
-  font-size: 1.5rem;
-  color: var(--white);
-  background-color: var(--primary-color);
-  border-radius: 100%;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.booking__container .btn:hover {
-  background-color: var(--primary-color-dark);
 }
 
 .popular__grid {
@@ -337,9 +442,10 @@ nav {
 }
 
 /* ESTILOS DE LAS TABLAS */
-.tablas{
-  justify-content: center;
+
+.container-table{
   display: flex;
+  justify-content: center;
 }
 
 .tabla-intercalada{
@@ -348,21 +454,30 @@ nav {
   border-spacing: 1px 5px;
 }
 .tabla-intercalada td, th{
+  border-radius: 10px;
+  text-align: center;
   padding: 10px; /* Espaciado dentro de las celdas */
 }
 
 .tabla-intercalada thead {
-  background-color: #1c5c0c; /* Color de fondo para el encabezado */
+  background-color: #6f61db; /* Color de fondo para el encabezado */
   font-weight: bold;
-}
-
-.tabla-intercalada tbody tr:nth-child(odd) {
-  background-color: #8eb396; /* Color de fondo para filas impares */
+  font-size: 18px;
 }
 
 .tabla-intercalada tbody tr:nth-child(even) {
-  background-color: #d2f0c5; /* Color de fondo para filas pares */
+  background-color: #2a730a; /* Color de fondo para filas pares */
 }
+
+.tabla-intercalada tbody tr:nth-child(odd) {
+  background-color: #848da3; /* Color de fondo para filas impares */
+}
+
+
+
+
+
+
 /*Fin estilos tablas*/
 
 @media (width < 900px) {

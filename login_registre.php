@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="assets/style_login_registre.css">
+    <link rel="stylesheet" href="assets/styles_index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -28,6 +28,9 @@
             <input type="number" name="cedula" placeholder="Cédula">
             <input type="password" name="contrasena" placeholder="Contraseña">
             <input type="submit" value="Iniciar Sesion">
+            <div class='index-volver'>
+                <a href="index.php">VOLVER</a>
+            </div>
         </form>
     </div>
 </body>

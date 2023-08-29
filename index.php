@@ -1,4 +1,5 @@
 <?php
+    header('Content-Type: text/html; charset=utf-8');
     //Fecha actual en horario de colombia
     date_default_timezone_set('America/Bogota');
     session_start();
@@ -27,7 +28,7 @@
             exit();
         }
         //$fechaFin = $fFin->format('y-m-d');
-        $query = ("SELECT h.numero_habitacion, h.descripcion
+        $query = ("SELECT h.numero_habitacion, h.descripcion, h.precio
         FROM habitaciones h
         WHERE h.numero_habitacion NOT IN (
             SELECT r.numero_habitacion
@@ -86,22 +87,28 @@
             <button type="submit" name="enviar" value="Validar Habitación"><i class="ri-search-line"></i></button>
             <button type="reset" value="Borrar datos"><i class="ri-chat-delete-line"></i></button>
           </form>
-          <?php if(isset($_POST['date_inicio']) && isset($_POST['date_fin'])){ ?>
-            <div class="tablas">
+          </div>
+      </div>
+    </header>
+    <section class='container-table'>
+            <?php if(isset($_POST['date_inicio']) && isset($_POST['date_fin'])){ ?>
                 <table class="tabla-intercalada">
                     <thead>
                         <tr>
-                            <td>
+                            <th>
                                 Número de Habitación
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 Descripción de la Habitación
-                            </td>
+                            </th>
+                            <th>
+                                Precio por noche
+                            </th>
                         </tr>
                     </thead>
                     <?php if (mysqli_num_rows($validarFecha) > 0) { 
                         while ($row = $validarFecha->fetch_assoc()) { 
-                        $link = "reserva.php?dato1=" . urlencode($fechaInicio) . "&dato2=" . urlencode($fechaFin) . "&dato3=" . $row['numero_habitacion']; ?>
+                        $link = "reserva.php?dato1=" . urlencode($fechaInicio) . "&dato2=" . urlencode($fechaFin) . "&dato3=" . $row['numero_habitacion']. "&dato4=" . $row['precio']; ?>
                         <tbody>
                             <tr>
                                 <td>
@@ -110,9 +117,12 @@
                                 <td>
                                     <?php echo $row['descripcion'] ?>
                                 </td>
+                                <td>
+                                    <?php echo "$ ". number_format($row['precio'],0,',','.')?>
+                                </td>
                             </tr>
                         </tbody>
-                        <?php }
+              <?php }
                     }else{ ?>
                         <tbody>
                             <tr>
@@ -126,11 +136,8 @@
                         </tbody>
                     <?php } ?>
                 </table>
-              </div>
             <?php } ?>
-          </div>
-      </div>
-    </header>
+    </section>
 
     <section class="section__container popular__container">
       <h2 class="section__header">HABITACIONES</h2>
