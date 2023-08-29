@@ -363,6 +363,7 @@ nav {
 .tabla-intercalada tbody tr:nth-child(even) {
   background-color: #d2f0c5; /* Color de fondo para filas pares */
 }
+/*Fin estilos tablas*/
 
 @media (width < 900px) {
   .booking__container form {

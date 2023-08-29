@@ -114,7 +114,7 @@
                         </tbody>
                         <?php }
                     }else{ ?>
-                        <thead>
+                        <tbody>
                             <tr>
                                 <td>
                                     No hay habitaciones disponibles en esas fechas.
@@ -128,7 +128,7 @@
                 </table>
               </div>
             <?php } ?>
-              </div>
+          </div>
       </div>
     </header>
 

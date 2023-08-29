@@ -6,7 +6,16 @@ DROP TABLE IF EXISTS habitaciones;
 CREATE TABLE habitaciones(
 	numero_habitacion int not null,
     descripcion varchar(100),
+    precio int(6),
     primary key(numero_habitacion)
+);
+
+DROP TABLE IF EXISTS productos; 
+CREATE TABLE productos(
+	id_producto int auto_increment,
+    nombre_producto varchar(40),
+    precio int(6),
+    primary key(id_producto)
 );
 
 DROP TABLE IF EXISTS clientes;
@@ -24,8 +33,17 @@ CREATE TABLE clientes(
     primary key(cedula_cliente)
 );
 
-DROP TABLE IF EXISTS validacion_clientes;
+DROP TABLE IF EXISTS pedidos; 
+CREATE TABLE pedidos(
+	id_pedidos int auto_increment,
+    id_producto int,
+    cedula_cliente int,
+    primary key(id_pedidos),
+    foreign key(id_producto) references productos(id_producto),
+    foreign key(cedula_cliente) references clientes(cedula_cliente)
+);
 
+DROP TABLE IF EXISTS validacion_clientes;
 CREATE TABLE validacion_clientes(
 	id_validacion INT not null,
     cedula_cliente int,
@@ -36,7 +54,6 @@ CREATE TABLE validacion_clientes(
 );
 
 DROP TABLE IF EXISTS reserva;
-
 CREATE TABLE reserva(
 	id_reserva int auto_increment,
     fecha_inicio date,
@@ -113,10 +130,10 @@ CREATE TABLE municipios(
 insert into clientes values ('98765','dirleny','ortiz','12345','agsdfg','fggsfgds','sdfgf','sfgsf','dir@dir','98765');
 
 insert into habitaciones values
-('101','Acogedora habitación individual con vista al jardín.'),
-('102','Espaciosa habitación doble con balcón privado.'),
-('201','Suite junior elegante con sala de estar.'),
-('202','Habitación familiar con dos camas dobles.');
+('101','Acogedora habitación individual con vista al jardín.','100000'),
+('102','Espaciosa habitación doble con balcón privado.','20000'),
+('201','Suite junior elegante con sala de estar.','3000000'),
+('202','Habitación familiar con dos camas dobles.','400000');
 -- datos login
 insert into login_registre values ('12345', 'weimar','wei@wei','12345');
 
@@ -137,3 +154,4 @@ SELECT h.numero_habitacion, h.descripcion
                OR (r.fecha_inicio <= '2023-08-27' AND r.fecha_final > '2023-08-27')
                OR (r.fecha_inicio >= '2023-08-27' AND r.fecha_inicio < '2023-09-04')
 );
+

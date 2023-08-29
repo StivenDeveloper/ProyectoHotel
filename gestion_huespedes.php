@@ -83,8 +83,8 @@
                         <td> <?php echo $row['correo'] ?></td>
                         <?php $link = "?cedula=" . urlencode($row['cedula_cliente']) ?>
                         <td> <a href="mostrar_reservas.php<?php echo $link ?>" class="aReserva">Reservas</a></td>
-                        <td> <a href="modificar_husepdes.php<?php echo $link ?>" class="aModificar">Modificar</a></td>
-                        <td> <a href="eliminar_huespedes.php<?php echo $link ?>" class="aEliminar">Eliminar</a></td>
+                        <td> <a href="modificar_huespedes.php<?php echo $link ?>" class="aModificar">Modificar</a></td>
+                        <td> <a href="php/eliminar_huespedes.php<?php echo $link ?>" onclick="return confirm('¿Estás seguro de eliminar el huesped y sus reservas?')" class="aEliminar">Eliminar</a></td>
                     </tr>
                     <?php }
                 } ?>

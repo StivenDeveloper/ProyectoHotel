@@ -28,7 +28,6 @@
             <input type="number" name="cedula" placeholder="Cédula">
             <input type="password" name="contrasena" placeholder="Contraseña">
             <input type="submit" value="Iniciar Sesion">
-            <div class="reserva">Si quieres hospedarte en nuestro hotel puedes ingresar <a href="reserva_fecha.php">aquí</a> y hacer una reserva <br><br>Si ya tienes una reservación y deseas CANCELAR  ingrese <a href="reserva_cancelar.php">aquí</a></div>
         </form>
     </div>
 </body>
