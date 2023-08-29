@@ -27,7 +27,7 @@
             exit();
         }
         //$fechaFin = $fFin->format('y-m-d');
-        $query = ("SELECT h.numero_habitacion, h.descripcion
+        $query = ("SELECT h.numero_habitacion, h.descripcion, h.precio
         FROM habitaciones h
         WHERE h.numero_habitacion NOT IN (
             SELECT r.numero_habitacion
@@ -87,7 +87,7 @@
             </thead>
             <?php if (mysqli_num_rows($validarFecha) > 0) { 
                 while ($row = $validarFecha->fetch_assoc()) { 
-                $link = "reserva_m.php?dato1=" . urlencode($fechaInicio) . "&dato2=" . urlencode($fechaFin) . "&dato3=" . $row['numero_habitacion']; ?>
+                $link = "reserva_m.php?dato1=" . urlencode($fechaInicio) . "&dato2=" . urlencode($fechaFin) . "&dato3=" . $row['numero_habitacion'] . "&dato4=" . $row['precio']; ?>
                 <tbody>
                     <tr>
                         <td>

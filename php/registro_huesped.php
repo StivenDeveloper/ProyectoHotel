@@ -15,11 +15,14 @@ include('conexion_bd.php');
     $fechaInicial = $_POST['fecha_inicial'];
     $fechaFinal = $_POST['fecha_final'];
     $nHabitacion = $_POST['habitacion'];
+    $numeroNoches = $_POST['numero_noches'];
+    $totalReserva = $_POST['total_reserva'];
+    
     
     $query_validarC = mysqli_query($con,"SELECT * FROM clientes WHERE cedula_cliente = '$cedula'");
     if(!(mysqli_num_rows($query_validarC) > 0)){
         $query_insert="INSERT INTO clientes VALUES ('$cedula','$nombre','$apellido','$telefono','$direccion','$pais','$departamento','$municipio','$email','$contrasena')";
-        $query_reserva = "INSERT INTO reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) VALUES ('$fechaInicial','$fechaFinal','$cedula','$nHabitacion')";
+        $query_reserva = "INSERT INTO reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion,numero_noches,precio_total) VALUES ('$fechaInicial','$fechaFinal','$cedula','$nHabitacion','$numeroNoches','$totalReserva')";
         $ejecutar = mysqli_query($con,$query_insert);
         $ejecutar_reserva = mysqli_query($con,$query_reserva);
         if($ejecutar && $ejecutar_reserva){
@@ -36,7 +39,7 @@ include('conexion_bd.php');
             </script>";
         }
     }else{
-        $query_reserva = "INSERT INTO reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) VALUES ('$fechaInicial','$fechaFinal','$cedula','$nHabitacion')";
+        $query_reserva = "INSERT INTO reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion,numero_noches,precio_total) VALUES ('$fechaInicial','$fechaFinal','$cedula','$nHabitacion','$numeroNoches','$totalReserva')";
         $ejecutar_reserva = mysqli_query($con,$query_reserva);
         if($ejecutar_reserva){
             echo 

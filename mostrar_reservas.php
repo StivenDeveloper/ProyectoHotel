@@ -10,7 +10,7 @@
             $row = $query_datos->fetch_assoc();
         }
 
-        $query_reserva= mysqli_query($con,"SELECT r.id_reserva, r.fecha_inicio, r.fecha_final,r.numero_habitacion
+        $query_reserva= mysqli_query($con,"SELECT r.id_reserva, r.fecha_inicio, r.fecha_final,r.numero_habitacion, numero_noches, precio_total
             FROM reserva r  
             INNER JOIN  clientes c 
             ON c.cedula_cliente = r.cedula_cliente 
@@ -55,26 +55,28 @@
                     <td>ID Reserva</td>
                     <td>Habitación</td>
                     <td>Fecha de Reserva</td>
-                    <td>Dias de Estadía</td>
+                    <td>Número de noches</td>
+                    <td>Precio total reserva</td>
                     <td>Cancelar</td>
                 </tr>
             </thead>
                 <?php if (mysqli_num_rows($query_reserva) > 0) { 
                     while ($row_reserva = $query_reserva->fetch_assoc()) {
                         //Para saber los días que se va a quedar el huesped
-                        $fecha1 = new DateTime($row_reserva['fecha_inicio']); // Tu primera fecha
-                        $fecha2 = new DateTime($row_reserva['fecha_final']); // Tu segunda fecha
-                        if($fecha1 == $fecha2){
-                            $diferenciaDias = 1;
-                        }else{
-                            $intervalo = $fecha1->diff($fecha2);
-                            $diferenciaDias = $intervalo->days;
-                        } ?>
+                        // $fecha1 = new DateTime($row_reserva['fecha_inicio']); // Tu primera fecha
+                        // $fecha2 = new DateTime($row_reserva['fecha_final']); // Tu segunda fecha
+                        // if($fecha1 == $fecha2){
+                        //     $diferenciaDias = 1;
+                        // }else{
+                        //     $intervalo = $fecha1->diff($fecha2);
+                        //     $diferenciaDias = $intervalo->days;
+                        // } ?>
                     <tr>
                         <td><?php echo $row_reserva['id_reserva'] ?></td>
                         <td><?php echo $row_reserva['numero_habitacion'] ?></td>
                         <td><?php echo $row_reserva['fecha_inicio'] ?></td>
-                        <td><?php echo $diferenciaDias ?></td>
+                        <td><?php echo $row_reserva['numero_noches'] ?></td>
+                        <td>$<?php echo number_format($row_reserva['precio_total'],0,',','.')?></td>
                         <?php $link = "php/cancelar_reserva_m.php?habitacion=" . urlencode($row_reserva['numero_habitacion']) . "&cedula=" . urlencode($cedula) . "&fecha=" . urlencode($row_reserva['fecha_inicio']) ?>
                         <td><a href="<?php echo $link ?>" class="aEliminar" onclick="return confirm('¿Estás seguro de que deseas cancelar la reserva?')">Cancelar Reserva</a></td>
                     </tr>

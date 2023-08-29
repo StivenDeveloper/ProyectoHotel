@@ -19,7 +19,7 @@
         $fechaFinal = $_GET['dato2'];
         $Nhabitacion = $_GET['dato3'];
         $precio = $_GET['dato4'];
-        $totalReserva = calcularEstadia($fechaInicial,$fechaFinal,$precio);
+        $totalReserva = calcularEstadia($fechaInicial,$fechaFinal) * $precio;
     } else {
         echo "No se han recibido los datos correctamente.";
         exit();
@@ -49,7 +49,7 @@
 
     }
 
-    function calcularEstadia($fechaInicial, $fechaFinal, $precio) {
+    function calcularEstadia($fechaInicial, $fechaFinal) {
         $fecha1 = new DateTime($fechaInicial);
         $fecha2 = new DateTime($fechaFinal);
         
@@ -59,9 +59,10 @@
             $intervalo = $fecha1->diff($fecha2);
             $diferenciaDias = $intervalo->days;
         }
-        
-        $precioTotal = $diferenciaDias * $precio; 
-        return number_format($precioTotal, 0, ',', '.');
+        return $diferenciaDias;
+        //$precioTotal = $diferenciaDias * $precio; 
+        //Formato de moneda
+        //return number_format($precioTotal,0, ',', '.');
     }
 ?>
 
@@ -80,10 +81,11 @@
             <p>Formulario para registro de los huespedes</p>
         </div>
         <section class='container-total'>
-            <h1>TOTAL A PAGAR: COP $ <?PHP echo $totalReserva?> </h1>
+            <h1>NUMERO DE NOCHES:  <?php echo calcularEstadia($fechaInicial,$fechaFinal) ?></h1>
+            <h1>TOTAL A PAGAR: COP $ <?PHP echo number_format($totalReserva,0,',','.')?> </h1>
         </section>
         <div>
-            <?php $link = "reserva.php?dato1=" . urlencode($fechaInicial) . "&dato2=" . urlencode($fechaFinal) . "&dato3=" . urlencode($Nhabitacion); ?>
+            <?php $link = "reserva.php?dato1=" . urlencode($fechaInicial) . "&dato2=" . urlencode($fechaFinal) . "&dato3=" . urlencode($Nhabitacion) . "&dato4=" . urlencode($precio); ?>
             <form action="<?php echo $link ?>" method="post">
                 <label for="cedula_validacion">Ingrese la cedula para validar si existe en el sistema</label>
                 <input type="number" name="cedula_validacion" placeholder="Cédula" class="campo" value="<?php echo $cedulaF ?>" required>
@@ -102,6 +104,8 @@
                 <input type="hidden" name="fecha_inicial" value="<?php echo $fechaInicial ?><">
                 <input type="hidden" name="fecha_final" value="<?php echo $fechaFinal ?>">
                 <input type="hidden" name="habitacion" value="<?php echo $Nhabitacion ?>">
+                <input type="hidden" name="numero_noches" value="<?php echo calcularEstadia($fechaInicial,$fechaFinal) ?>">
+                <input type="hidden" name="total_reserva" value="<?php echo $totalReserva ?>">
 
                 <input type="submit" name="enviar" value="Reservar" class="btn-enviar">
                 <input type="reset" value="Borrar datos" class="btn-enviar">

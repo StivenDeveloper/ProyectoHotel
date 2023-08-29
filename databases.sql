@@ -60,6 +60,9 @@ CREATE TABLE reserva(
     fecha_final date,
     cedula_cliente int,
     numero_habitacion int,
+    numero_noches int,
+    precio_total int,
+    checkin boolean default 0,
     primary key(id_reserva),
     foreign key(cedula_cliente) references clientes(cedula_cliente),
     foreign key(numero_habitacion) references habitaciones(numero_habitacion)
@@ -139,7 +142,7 @@ insert into login_registre values ('12345', 'weimar','wei@wei','12345');
 
 -- datos reserva
 
-insert into reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) values('2023-08-24','2023-08-25','98765','101');
+insert into reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion,numero_noche,) values('2023-08-24','2023-08-25','98765','101','');
 insert into reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) values('2023-08-27','2023-08-30','98765','101');
 insert into reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion) values('2023-08-30','2023-09-02','98765','102');
 
