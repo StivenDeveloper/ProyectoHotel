@@ -1,7 +1,6 @@
 <?php
 include('conexion_bd.php');
     $con = conexion();
-
     $cedula = $_POST['cedula'];
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];

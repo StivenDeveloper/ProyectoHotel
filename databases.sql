@@ -45,7 +45,7 @@ CREATE TABLE pedidos(
 
 DROP TABLE IF EXISTS validacion_clientes;
 CREATE TABLE validacion_clientes(
-	id_validacion INT not null,
+	id_validacion INT not null, 
     cedula_cliente int,
     fecha timestamp,
 	verificado_cedula varchar(45),
@@ -124,10 +124,10 @@ CREATE TABLE municipios(
 insert into clientes values ('98765','dirleny','ortiz','12345','agsdfg','fggsfgds','sdfgf','sfgsf','dir@dir','98765');
 
 insert into habitaciones values
-('101','Acogedora habitación individual con vista al jardín.','100000'),
-('102','Espaciosa habitación doble con balcón privado.','20000'),
-('201','Suite junior elegante con sala de estar.','3000000'),
-('202','Habitación familiar con dos camas dobles.','400000');
+('101','Acogedora habitación individual con vista al jardín.','250000'),
+('102','Espaciosa habitación doble con balcón privado.','150000'),
+('201','Suite junior elegante con sala de estar.','240000'),
+('202','Habitación familiar con dos camas dobles.','180000');
 -- datos login
 insert into login_registre values ('12345', 'weimar','wei@wei','12345');
 

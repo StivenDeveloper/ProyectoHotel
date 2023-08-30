@@ -10,7 +10,8 @@
         $nombre = $_GET['nombre'];
         $cedula = $_GET['cedula'];
     }
-    $query_consulta_p = mysqli_query($con,"SELECT");
+
+
 ?>
 
 
@@ -45,7 +46,7 @@
                 <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=1">Pedir Productos</a>
                 <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=2">Total de Pedidos</a>
                 <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=3">Modificar Datos</a>
-                <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=4">Contactos</a>
+                <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=4">INFORMACION</a>
             </div>
           </div>
       </div>
@@ -75,7 +76,7 @@
                                         <?php while($row_producto = $query_producto->fetch_assoc()){ ?>
                                             <tr>
                                                 <td> <?php echo $row_producto['nombre_producto'] ?> </td>
-                                                <td> <?php echo $row_producto['precio'] ?> </td>
+                                                <td>$<?php echo number_format($row_producto['precio'],0,',','.') ?> </td>
                                                 <td> <input type="checkbox" name="pedidos[]" value="<?php echo $row_producto['id_producto'] ?>"></td>
                                             </tr>
                                         <?php } ?>
@@ -130,19 +131,21 @@
 
                 <!-- IF PIN 4-->
                 <?php if($pin == 4){ ?>
-                    <div class="tablas">
-                        <table class="tabla-intercalada">
-                            <thead>
-                                <tr>
-                                    <td>Producto</td>
-                                    <td>Precio</td>
-                                    <td>Confirmar</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                pin 4
-                            </tbody>
-                        </table>
+                    <?php $query_consulta_ticket = mysqli_query($con,"SELECT contrasena FROM clientes Where cedula_cliente = '$cedula'"); 
+                    if ($query_consulta_ticket) {
+                        $fila = $query_consulta_ticket->fetch_assoc();
+                        $ticket = $fila['contrasena'];
+                        $nombre = $_GET['nombre'];
+                    }?>
+                    
+                    <button id="abrirModal" class='boton'>INFORMACIÓN RESERVA</button>
+                    <div id="modal" class="modal">
+                        <div class="modal-contenido">
+                            <span class="cerrar" id="cerrarModal">&times;</span>
+                            <p>Hola <?php echo $nombre ?></p>
+                            <p> - MARQUE LA EXTENSIÓN 06 PARA COMUNICARSE CON RECEPCIÓN</p>
+                            <p> - RECUERDA QUE SU NÚMERO DE TICKET PARA SOLICITAR PEDIDOS ES: <b><?php echo $ticket ?></b></p>
+                        </div>
                     </div>
                 <?php } ?>
                 <!-- FIN IF PIN 4-->
@@ -172,5 +175,6 @@
         Copyright © 2023 Web Design Weimar, Dirleny and Evert. All rights reserved.
       </div>
     </footer>
+    <script src="js/script.js"></script>
   </body>
 </html>
