@@ -271,7 +271,7 @@
         </div>
       </div>
       <div class="footer__bar">
-        Copyright © 2023 Web Design Wei, dirly and evert. All rights reserved.
+        Copyright © 2023 Web Design Weima, Dirleny and Evert. All rights reserved.
       </div>
     </footer>
   </body>

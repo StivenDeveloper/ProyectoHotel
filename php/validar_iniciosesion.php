@@ -13,14 +13,15 @@
         Header("location:../menuPrincipal.php");
         exit;
     }else if(mysqli_num_rows($validar_cliente)>0){
+        $row = $validar_cliente->fetch_assoc();
         $_SESSION['usuario']=$usuario;
-        Header("location:../clientes.php");
+        Header("location:../clientes.php?nombre=" . $row['nombre']);
         exit;
     }else{
         echo "
         <script>
             alert('Usuario no existe, por favor verifique los datos ingresados.')            
-            window.location='../index.php';
+            window.location='../login_registre.php';
         </script>
         ";
         exit;

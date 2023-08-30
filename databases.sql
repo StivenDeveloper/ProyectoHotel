@@ -158,3 +158,15 @@ SELECT h.numero_habitacion, h.descripcion
                OR (r.fecha_inicio >= '2023-08-27' AND r.fecha_inicio < '2023-09-04')
 );
 
+-- Insert productos
+INSERT INTO productos (nombre_producto, precio) VALUES
+    ('Café Premium', 5000),
+    ('Té de Hierbas', 3000),
+    ('Chocolate Caliente', 4500),
+    ('Croissant de Almendras', 3500),
+    ('Ensalada Fresca', 6000),
+    ('Sándwich de Pollo', 5500),
+    ('Pizza Margherita', 7000),
+    ('Hamburguesa Clásica', 8000),
+    ('Tarta de Manzana', 4000),
+    ('Helado de Vainilla', 2500);
