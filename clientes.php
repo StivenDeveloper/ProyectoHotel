@@ -6,11 +6,12 @@
     include('php/conexion_bd.php');
     $con = conexion();
 
-    if (isset($_GET['nombre'])){
+    if (isset($_GET['nombre']) && isset($_GET['cedula'])){
         $nombre = $_GET['nombre'];
+        $cedula = $_GET['cedula'];
     }
+    $query_consulta_p = mysqli_query($con,"SELECT");
 ?>
-
 
 
 <!DOCTYPE html>
@@ -41,10 +42,10 @@
         </div>
         <div class="booking__container">
             <div class="navbar">
-                <a href="clientes.php?nombre=<?php echo $nombre ?>&pin=1">Pedir Productos</a>
-                <a href="clientes.php?nombre=<?php echo $nombre ?>&pin=2">Total de Pedidos</a>
-                <a href="clientes.php?nombre=<?php echo $nombre ?>&pin=3">Modificar Datos</a>
-                <a href="clientes.php?nombre=<?php echo $nombre ?>&pin=4">Contactos</a>
+                <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=1">Pedir Productos</a>
+                <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=2">Total de Pedidos</a>
+                <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=3">Modificar Datos</a>
+                <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=4">Contactos</a>
             </div>
           </div>
       </div>
@@ -59,6 +60,8 @@
                     <?php 
                         $query_producto = mysqli_query($con,"SELECT * FROM productos");
                         if(mysqli_num_rows($query_producto) > 0){ ?>
+
+                        <form action="php/validar_pedidos.php" method="post">
                             <div class="tablas">
                                 <table class="tabla-intercalada">
                                     <thead>
@@ -73,13 +76,16 @@
                                             <tr>
                                                 <td> <?php echo $row_producto['nombre_producto'] ?> </td>
                                                 <td> <?php echo $row_producto['precio'] ?> </td>
-                                                <td> <a href="">Cargar Pedido</a></td>
+                                                <td> <input type="checkbox" name="pedidos[]" value="<?php echo $row_producto['id_producto'] ?>"></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
                                 </table>
-                    </div>
-
+                            </div>
+                            <input type="hidden" name="cedula" value="<?php echo $cedula ?>">
+                            <input type="hidden" name="nombre" value="<?php echo $nombre ?>">
+                            <input type="submit" value="Confirmar" class="submit">
+                        </form>
                         <?php } ?>
                 <?php } ?>
                 <!-- FIN IF PIN 1-->

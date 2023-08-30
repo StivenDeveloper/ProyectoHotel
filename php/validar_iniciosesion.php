@@ -15,7 +15,7 @@
     }else if(mysqli_num_rows($validar_cliente)>0){
         $row = $validar_cliente->fetch_assoc();
         $_SESSION['usuario']=$usuario;
-        Header("location:../clientes.php?nombre=" . $row['nombre']);
+        Header("location:../clientes.php?nombre=" . $row['nombre'] . "&cedula=" .$row['cedula_cliente']);
         exit;
     }else{
         echo "

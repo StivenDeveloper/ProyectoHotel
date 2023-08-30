@@ -68,15 +68,6 @@ CREATE TABLE reserva(
     foreign key(numero_habitacion) references habitaciones(numero_habitacion)
 );
 
-DROP TABLE IF EXISTS pedidos;
-CREATE TABLE pedidos(
-	id_pedido int not null,
-    tipo_pedido varchar(45),
-    fecha_pedido date,
-    cedula_cliente int,
-    primary key(id_pedido),
-    foreign key(cedula_cliente) references clientes(cedula_cliente)
-);
 
 DROP TABLE IF EXISTS facturacion;
 CREATE TABLE facturacion(
