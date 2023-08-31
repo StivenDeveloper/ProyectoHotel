@@ -133,6 +133,19 @@ insert into habitaciones values
 -- datos login
 insert into login_registre values ('12345', 'weimar','wei@wei','12345');
 
+-- Insert productos
+INSERT INTO productos (nombre_producto, precio) VALUES
+    ('Café Premium', 5000),
+    ('Té de Hierbas', 3000),
+    ('Chocolate Caliente', 4500),
+    ('Croissant de Almendras', 3500),
+    ('Ensalada Fresca', 6000),
+    ('Sándwich de Pollo', 5500),
+    ('Pizza Margherita', 7000),
+    ('Hamburguesa Clásica', 8000),
+    ('Tarta de Manzana', 4000),
+    ('Helado de Vainilla', 2500);
+
 -- datos reserva
 
 insert into reserva (fecha_inicio,fecha_final,cedula_cliente,numero_habitacion,numero_noche,) values('2023-08-24','2023-08-25','98765','101','');
