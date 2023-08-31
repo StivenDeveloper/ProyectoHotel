@@ -69,7 +69,7 @@
                                         <tr>
                                             <td>Producto</td>
                                             <td>Precio</td>
-                                            <td>Confirmar</td>
+                                            <td>Cantidad</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -77,7 +77,16 @@
                                             <tr>
                                                 <td> <?php echo $row_producto['nombre_producto'] ?> </td>
                                                 <td>$<?php echo number_format($row_producto['precio'],0,',','.') ?> </td>
-                                                <td> <input type="checkbox" name="pedidos[]" value="<?php echo $row_producto['id_producto'] ?>"></td>
+                                                <!--<td> <input type="checkbox" name="pedidos[]" value="<?php echo $row_producto['id_producto'] ?>"></td>-->
+                                                <td>
+                                                    <select name="pedidos[<?php echo $row_producto['id_producto'] ?>]">
+                                                        <option value="0">0 pedidos</option>
+                                                        <option value="1">1 pedido</option>
+                                                        <option value="2">2 pedidos</option>
+                                                        <option value="3">3 pedidos</option>
+                                                        <!-- Agrega más opciones según tus necesidades -->
+                                                    </select>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

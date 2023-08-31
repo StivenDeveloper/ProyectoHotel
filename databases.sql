@@ -38,6 +38,8 @@ CREATE TABLE pedidos(
 	id_pedidos int auto_increment,
     id_producto int,
     cedula_cliente int,
+    cantidad int,
+    precio_total int,
     primary key(id_pedidos),
     foreign key(id_producto) references productos(id_producto),
     foreign key(cedula_cliente) references clientes(cedula_cliente)
