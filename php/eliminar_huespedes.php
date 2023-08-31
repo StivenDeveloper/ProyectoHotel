@@ -4,7 +4,6 @@
 
     if(isset($_GET['cedula'])){
         $cedula = $_GET['cedula'];
-        echo $cedula;
         $query_validar_reserva = mysqli_query($con,"SELECT * FROM reserva  WHERE cedula_cliente='$cedula'");
         if(mysqli_num_rows($query_validar_reserva)>0){
             $query_eliminar_r = mysqli_query($con,"DELETE FROM reserva  WHERE cedula_cliente='$cedula'");

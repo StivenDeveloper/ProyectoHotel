@@ -45,6 +45,7 @@
                     <input type="submit" name="buscar" value="Buscar" class="btn-enviar">
                     <input type="reset" value="Borrar datos" class="btn-enviar">
                     <input type="submit" name="todos" value="Mostrar Todos" class="btn-enviar">
+                    <input type="submit" name="checkin" value="CHECKIN" class="btn-enviar">
                     </form>
                 </div>
                 <a href="menuPrincipal.php">Volver</a>
@@ -66,6 +67,7 @@
                     <td>Reservas</td>
                     <td>Modificar</td>
                     <td>Eliminar</td>
+                    <td>Check-in</td>
                 </tr>
             </thead>
             <tbody>
@@ -85,6 +87,7 @@
                         <td> <a href="mostrar_reservas.php<?php echo $link ?>" class="aReserva">Reservas</a></td>
                         <td> <a href="modificar_huespedes.php<?php echo $link ?>" class="aModificar">Modificar</a></td>
                         <td> <a href="php/eliminar_huespedes.php<?php echo $link ?>" onclick="return confirm('¿Estás seguro de eliminar el huesped y sus reservas?')" class="aEliminar">Eliminar</a></td>
+                        <td> <a href="php/validar_checkin.php<?php echo $link ?>" class="aEliminar">Check-in</a></td>
                     </tr>
                     <?php }
                 } ?>
