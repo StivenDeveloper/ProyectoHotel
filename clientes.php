@@ -5,6 +5,7 @@
     session_start();
     include('php/conexion_bd.php');
     $con = conexion();
+    $total = 0;
 
     if (isset($_GET['nombre']) && isset($_GET['cedula'])){
         $nombre = $_GET['nombre'];
@@ -45,8 +46,7 @@
             <div class="navbar">
                 <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=1">Pedir Productos</a>
                 <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=2">Total de Pedidos</a>
-                <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=3">Modificar Datos</a>
-                <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=4">INFORMACION</a>
+                <a href="clientes.php?nombre=<?php echo $nombre ?>&cedula=<?php echo $cedula ?>&pin=3">INFORMACION</a>
             </div>
           </div>
       </div>
@@ -106,13 +106,35 @@
                         <table class="tabla-intercalada">
                             <thead>
                                 <tr>
-                                    <td>Producto</td>
+                                    <td>id producto</td>
+                                    <td>Nombre producto</td>
                                     <td>Precio</td>
-                                    <td>Confirmar</td>
+                                    <td>Cantidad</td>
+                                    <td>Subtotal</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                pin 2
+                                <?php $query_lista_pedidos = mysqli_query($con, "SELECT pr.id_producto, pr.nombre_producto, pr.precio, pe.cantidad, pe.precio_total
+                                                                                 FROM pedidos pe 
+                                                                                 INNER JOIN productos pr ON pr.id_producto = pe.id_producto
+                                                                                 WHERE pe.cedula_cliente = '$cedula'");  
+                                if(mysqli_num_rows($query_lista_pedidos) > 0){ ?>
+                                            <?php while($row_pedidos = $query_lista_pedidos->fetch_assoc()){ ?>
+                                                <?php $total += $row_pedidos['precio_total'] ?>
+                                                <tr>
+                                                    <td> <?php echo $row_pedidos['id_producto'] ?> </td>
+                                                    <td> <?php echo $row_pedidos['nombre_producto'] ?> </td>
+                                                    <td>$<?php echo number_format($row_pedidos['precio'],0,',','.') ?> </td>
+                                                    <td> <?php echo $row_pedidos['cantidad'] ?> </td>
+                                                    <td>$<?php echo number_format($row_pedidos['precio_total'],0,',','.') ?> </td>
+                                                </tr>
+                                               
+                                            <?php } ?>
+                                                <tr>
+                                                    <td><b>TOTAL</b></td>
+                                                    <td>$<?php echo number_format($total,0,',','.') ?></td>
+                                                </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -121,25 +143,6 @@
 
                 <!-- IF PIN 3-->
                 <?php if($pin == 3){ ?>
-                    <div class="tablas">
-                        <table class="tabla-intercalada">
-                            <thead>
-                                <tr>
-                                    <td>Producto</td>
-                                    <td>Precio</td>
-                                    <td>Confirmar</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                pin 3
-                            </tbody>
-                        </table>
-                    </div>
-                <?php } ?>
-                <!-- FIN IF PIN 3-->
-
-                <!-- IF PIN 4-->
-                <?php if($pin == 4){ ?>
                     <?php $query_consulta_ticket = mysqli_query($con,"SELECT contrasena FROM clientes Where cedula_cliente = '$cedula'"); 
                     if ($query_consulta_ticket) {
                         $fila = $query_consulta_ticket->fetch_assoc();
@@ -157,7 +160,7 @@
                         </div>
                     </div>
                 <?php } ?>
-                <!-- FIN IF PIN 4-->
+                <!-- FIN IF PIN 3-->
                 
                 
         <!--Aqui termina el primer IF-->

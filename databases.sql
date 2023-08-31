@@ -176,3 +176,8 @@ INSERT INTO productos (nombre_producto, precio) VALUES
     ('Hamburguesa Clásica', 8000),
     ('Tarta de Manzana', 4000),
     ('Helado de Vainilla', 2500);
+
+
+    "SELECT pr.id_producto, pr.nombre_producto, pr.precio, pe.cantidad, pe.precio_total
+    FROM pedidos pe INNER JOIN productos pr ON pr.id_producto = pe.id_producto
+    WHERE pe.cedula_cliente = '$cedula'";
