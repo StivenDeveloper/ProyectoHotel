@@ -1,3 +1,12 @@
+<?php
+session_start();
+include('php/conexion_bd.php');
+    $con = conexion();
+  
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
