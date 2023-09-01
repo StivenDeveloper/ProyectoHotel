@@ -73,10 +73,10 @@ CREATE TABLE reserva(
 
 DROP TABLE IF EXISTS facturacion;
 CREATE TABLE facturacion(
-	id_factura int,
+	id_factura int auto_increment,
     cedula_cliente int,
     fecha_factura date,
-    costo decimal(6,2),
+    costo int,
     primary key(id_factura),
     foreign key(cedula_cliente) references clientes(cedula_cliente)
 );
@@ -163,6 +163,14 @@ SELECT h.numero_habitacion, h.descripcion
                OR (r.fecha_inicio <= '2023-08-27' AND r.fecha_final > '2023-08-27')
                OR (r.fecha_inicio >= '2023-08-27' AND r.fecha_inicio < '2023-09-04')
 );
+
+-- Otra consulta mágica
+--coge la tabla productos y pedidos y muestra el valor de los valores agrupados
+SELECT pro.nombre_producto, pro.precio, SUM(ped.cantidad) AS cantidad_total, SUM(ped.precio_total) AS precio_total_total
+FROM productos pro
+INNER JOIN pedidos ped ON pro.id_producto = ped.id_producto
+WHERE ped.cedula_cliente = $cedula
+GROUP BY pro.nombre_producto, pro.precio;
 
 -- Insert productos
 INSERT INTO productos (nombre_producto, precio) VALUES

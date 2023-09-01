@@ -58,8 +58,8 @@
                 } ?>
             <input type="submit" name="validar" class="btn-enviar" value="Validar">
             <input type="submit" name="crear" class="btn-enviar" value="Crear Pedido">
+            <a href="menuPrincipal.php">Volver</a>
         </form>
-        <a href="menuPrincipal.php">Volver</a>
     </div>
 
     <?php if($pin == 1) { ?>
