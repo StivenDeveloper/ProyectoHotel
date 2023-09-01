@@ -131,7 +131,7 @@
                                                
                                             <?php } ?>
                                                 <tr>
-                                                    <td><b>TOTAL</b></td>
+                                                    <td colspan="4"><b>TOTAL</b></td>
                                                     <td>$<?php echo number_format($total,0,',','.') ?></td>
                                                 </tr>
                                 <?php } ?>

@@ -86,7 +86,7 @@
                             </tr>
                         <?php } ?>
                             <tr>
-                                <td><b>Total</b></td>
+                                <td colspan="3"><b>Total</b></td>
                                 <td>$<?php echo number_format($total,0,',','.') ?></td>
                             </tr>
                     </tbody>

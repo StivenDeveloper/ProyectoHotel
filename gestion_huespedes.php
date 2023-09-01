@@ -14,9 +14,9 @@
             ";
         }
     }else if(isset($_POST['todos'])){
-        $query_huesped = mysqli_query($con, "SELECT * FROM clientes");
+        $query_huesped = mysqli_query($con, "SELECT * FROM clientes c  LEFT JOIN reserva r ON c.cedula_cliente= r.cedula_cliente WHERE r.checkin = '0'");
     }else{
-        $query_huesped = mysqli_query($con, "SELECT * FROM clientes");
+        $query_huesped = mysqli_query($con, "SELECT * FROM clientes c  LEFT JOIN reserva r ON c.cedula_cliente= r.cedula_cliente WHERE r.checkin = '0'");
     }
 
     if(isset($_POST['checkin'])){

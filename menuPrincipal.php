@@ -12,7 +12,7 @@
             <h2>MENÚ PRINCIPAL</h2>
             <p>Menú principal para dirigirse a los siguientes submenus</p>
         </div>
-            <div class="">
+            <div class="menu">
                 <a href="reserva_fecha_m.php"><button class="btn-enviar">Reserva Huesped</button></a>
                 <a href="facturacion.php"><button class="btn-enviar">Facturación</button></a>
                 <a href="pedidos.php"><button class="btn-enviar">Pedidos</button></a>
