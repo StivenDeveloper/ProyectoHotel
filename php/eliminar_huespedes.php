@@ -22,7 +22,7 @@
         }else{
             echo "
                 <script>
-                    alert('Reserva no fue eliminada correctamente.')            
+                    alert('El cliente no fue eliminada correctamente.')            
                     window.location='../gestion_huespedes.php'
                 </script>
                 ";

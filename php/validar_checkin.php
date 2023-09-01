@@ -4,8 +4,22 @@
 
     if(isset($_GET['cedula'])){
         $cedula= $_GET['cedula'];
-        $query_chickin = mysqli_query($con,"UPDATE reserva SET checkin = 1 WHERE cedula_cliente = '$cedula'");
-        $query_consulta_clientes = mysqli_query($con,"SELECT contrasena,nombre FROM clientes Where cedula_cliente = '$cedula'"); 
+        $query_reserva = mysqli_query($con,"SELECT * FROM reserva WHERE cedula_cliente = '$cedula'");
+        if(mysqli_num_rows($query_reserva)>0){
+            $query_chickin = mysqli_query($con,"UPDATE reserva SET checkin = 1 WHERE cedula_cliente = '$cedula'");
+            $query_consulta_clientes = mysqli_query($con,"SELECT contrasena,nombre FROM clientes Where cedula_cliente = '$cedula'");
+        }else{
+            echo "
+            <script>
+                if(confirm('No hay reservas para ese Huesped, ¿Desea realizar una reserva?')){
+                  window.location='../reserva_fecha_m.php';
+                } else{
+                   window.location='../gestion_huespedes.php';
+                }          
+          </script>
+            "; 
+        }
+         
     }
 ?>
 
