@@ -19,6 +19,10 @@
         $query_huesped = mysqli_query($con, "SELECT * FROM clientes");
     }
 
+    if(isset($_POST['checkin'])){
+        $query_huesped = mysqli_query($con, "SELECT * FROM clientes c  LEFT JOIN reserva r ON c.cedula_cliente= r.cedula_cliente WHERE r.checkin = '1'");
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,6 +30,9 @@
     <meta charset="UTF-8">
     <title>Formulario de Contacto</title>
     <link rel="stylesheet" href="assets/style.css">
+    <link href="
+    https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.min.css
+    " rel="stylesheet">
 </head>
 <body>
     <h1 class="titulo">EMPRESA HOTELERA EJE CAFETERO</h1>
@@ -66,7 +73,7 @@
                     <td>Correo</td>
                     <td>Reservas</td>
                     <td>Modificar</td>
-                    <td>Eliminar</td>
+                    <!-- <td>Eliminar</td> -->
                     <td>Check-in</td>
                 </tr>
             </thead>
@@ -86,8 +93,8 @@
                         <?php $link = "?cedula=" . urlencode($row['cedula_cliente']) ?>
                         <td> <a href="mostrar_reservas.php<?php echo $link ?>" class="aReserva">Reservas</a></td>
                         <td> <a href="modificar_huespedes.php<?php echo $link ?>" class="aModificar">Modificar</a></td>
-                        <td> <a href="php/eliminar_huespedes.php<?php echo $link ?>" onclick="return confirm('¿Estás seguro de eliminar el huesped y sus reservas?')" class="aEliminar">Eliminar</a></td>
-                        <td> <a href="php/validar_checkin.php<?php echo $link ?>" class="aEliminar">Check-in</a></td>
+                        <!-- <td> <a href="php/eliminar_huespedes.php<?php echo $link ?>" onclick="return confirm('¿Estás seguro de eliminar el huesped y sus reservas?')" class="aEliminar">Eliminar</a></td> -->
+                        <td> <a href="php/validar_checkin.php<?php echo $link ?>" class="aEliminar"><i class="ri-hotel-bed-fill"></i></a></td>
                     </tr>
                     <?php }
                 } ?>

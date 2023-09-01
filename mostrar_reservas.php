@@ -83,8 +83,8 @@
                     <?php }
                 }else{ ?>
                     <script>
-                        if(confirm('No hay reservas para ese Huesped, ¿desea eliminarlo?')){
-                            window.location='php/eliminar_huespedes.php?cedula=<?php echo urlencode($cedula) ?>';
+                        if(confirm('No hay reservas para ese Huesped, ¿Desea reservar?')){
+                            window.location='reserva_fecha_m.php?cedula=<?php echo urlencode($cedula) ?>';
                         } else{
                              window.location='gestion_huespedes.php';
                         }          

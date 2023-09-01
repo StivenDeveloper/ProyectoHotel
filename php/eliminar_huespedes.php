@@ -4,7 +4,7 @@
 
     if(isset($_GET['cedula'])){
         $cedula = $_GET['cedula'];
-        $query_validar_reserva = mysqli_query($con,"SELECT * FROM reserva  WHERE cedula_cliente='$cedula'");
+        $query_validar_reserva = mysqli_query($con,"SELECT * FROM reserva WHERE cedula_cliente='$cedula'");
         if(mysqli_num_rows($query_validar_reserva)>0){
             $query_eliminar_r = mysqli_query($con,"DELETE FROM reserva  WHERE cedula_cliente='$cedula'");
             $query_eliminar_c = mysqli_query($con,"DELETE FROM clientes  WHERE cedula_cliente = '$cedula'");
@@ -22,7 +22,7 @@
         }else{
             echo "
                 <script>
-                    alert('El cliente no fue eliminada correctamente.')            
+                    alert('El cliente no se puede eliminar, ya que tiene pedidos.')            
                     window.location='../gestion_huespedes.php'
                 </script>
                 ";

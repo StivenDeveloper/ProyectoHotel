@@ -1,16 +1,18 @@
 <?php
     include('php/conexion_bd.php');
     $con = conexion();
-
+    $total = 0;
     $pin = 0;
     if(isset($_POST['cedula'])){
         $cedula = $_POST['cedula'];
         $query_huesped = mysqli_query($con, "SELECT * FROM clientes WHERE cedula_cliente = $cedula");
-        $query_pedidos = mysqli_query($con, "SELECT pro.nombre_producto, ped.cantidad, ped.precio_total 
-            FROM productos pro
-            INNER JOIN pedidos ped
-            ON pro.id_producto = ped.id_producto
-            WHERE ped.cedula_cliente = $cedula");
+        $query_pedidos = mysqli_query($con, "SELECT pro.nombre_producto as nombre_producto, pro.precio as precio, 
+                                            SUM(ped.cantidad) AS cantidad, 
+                                            SUM(ped.precio_total) AS precio_total
+                                            FROM productos pro
+                                            INNER JOIN pedidos ped ON pro.id_producto = ped.id_producto
+                                            WHERE ped.cedula_cliente = $cedula
+                                            GROUP BY pro.nombre_producto;");
     }
     if(isset($_POST['validar'])){
         $pin = 1;
@@ -69,17 +71,24 @@
                         <tr>
                             <td>Nombre Pedido</td>
                             <td>Cantidad</td>
-                            <td>Precio</td>
+                            <td>Precio uni.</td>
+                            <td>Subtotal</td>
                         </tr>
                     </thead>
                     <tbody>
                         <?php while ($row_pedido = $query_pedidos->fetch_assoc()) { ?>
+                            <?php $total += $row_pedido['precio_total'] ?>
                             <tr>
                                 <td><?php echo $row_pedido['nombre_producto'] ?></td>
                                 <td><?php echo $row_pedido['cantidad'] ?></td>
+                                <td>$<?php echo number_format($row_pedido['precio'],0,',','.') ?></td>
                                 <td>$<?php echo number_format($row_pedido['precio_total'],0,',','.') ?></td>
                             </tr>
                         <?php } ?>
+                            <tr>
+                                <td><b>Total</b></td>
+                                <td>$<?php echo number_format($total,0,',','.') ?></td>
+                            </tr>
                     </tbody>
                 <?php } 
             }?>
