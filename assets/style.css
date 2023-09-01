@@ -125,4 +125,31 @@
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
 }
 
-    
+.factura{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }   
+  .factura div{
+    background-color: #d8d1ca;
+    width: 60%;
+    padding: 1%;
+  }
+  /* estilos de las tablas */
+  .factura table {
+    border-collapse: collapse; /* Esto elimina los espacios entre las celdas */
+    width: 70%;
+  }
+
+  .factura th, td {
+    border-right: 1px solid black; /* Bordes entre columnas */
+    padding: 2px;
+    text-align: left;
+  }
+  .factura th {
+    font-weight: bold; /* Agrega negrita al encabezado */
+  }
+
+  .factura th:last-child, td:last-child {
+    border-right: none; /* Elimina el borde derecho en la última columna */
+  }
